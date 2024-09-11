@@ -2,6 +2,8 @@
 Documentation     Simple example using SeleniumLibrary.
 Library           SeleniumLibrary
 Resource          resources/ChromeBrowser.robot
+Suite Setup       Open Headless Chrome Browser
+Suite Teardown    Close Browser
 
 *** Variables ***
 ${LOGIN URL}      http://localhost:5173/
@@ -10,11 +12,10 @@ ${BROWSER}        Chrome
 *** Test Cases ***
 Valid Home Page
     Open Browser To Login Page
-    [Teardown]    Close Browser
 
 *** Keywords ***
 Open Browser To Login Page
-    Open Headless Chrome Browser  ${LOGIN URL}
+    Go To  ${LOGIN URL}
     Title Should Be    Ghost Job Buster
     Page Should Contain Element    id=app
     Page Should Contain Element    id=header
