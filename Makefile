@@ -1,8 +1,8 @@
 dev:
-	robot -P ./ --outputdir output GJD/
+	robot -P ./ -V .env.dev.json --outputdir output GJD/
 
 prod:
-	robot -P ./ -v LOGIN_URL:https://ghostjobbuster.com --outputdir output GJD/
+	robot -P ./ -V .env.prod.json --outputdir output GJD/
 
 clean:
 	rm -rf output
