@@ -4,4 +4,7 @@ dev:
 prod:
 	robot -P ./ -v LOGIN_URL:https://ghostjobbuster.com --outputdir output GJD/
 
-PHONY: dev prod
+clean:
+	rm -rf output
+
+PHONY: dev prod clean
