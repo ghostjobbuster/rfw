@@ -12,16 +12,10 @@ ${BROWSER}        Chrome
 
 *** Test Cases ***
 Valid Login Page
-    Open Browser To Login Page
+    Open Browser To Home Page
     Login To GJD
  
 *** Keywords ***
-Open Browser To Login Page
-    Go To  ${LOGIN URL}
-    Title Should Be    Ghost Job Buster
-    Page Should Contain Element    id=header
-    Page Should Contain Element    id=loginLink
-
 Login To GJD
     Click Link			   id=loginLink
     Title Should Be    Log in | ${APP_NAME}
