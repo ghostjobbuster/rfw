@@ -4,6 +4,7 @@ Library           SeleniumLibrary
 Resource          resources/ChromeBrowser.robot
 Suite Setup       Open Headless Chrome Browser
 Suite Teardown    Close Browser
+Force Tags        1  1.1  home
 
 *** Variables ***
 ${LOGIN URL}      http://localhost:5173/
@@ -25,17 +26,3 @@ Open Browser To Home Page
     Page Should Contain Element    id=features
     Page Should Contain Element    id=pricing
     Page Should Contain Element    id=footer
-
-Input Username
-    [Arguments]    ${username}
-    Input Text    username_field    ${username}
-
-Input Password
-    [Arguments]    ${password}
-    Input Text    password_field    ${password}
-
-Submit Credentials
-    Click Button    login_button
-
-Welcome Page Should Be Open
-    Title Should Be    Welcome Page
