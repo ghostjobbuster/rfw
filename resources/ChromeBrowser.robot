@@ -22,6 +22,9 @@ Open Headless Chrome Browser
     ...  sys, selenium.webdriver
     Call Method    ${options}    add_argument    --headless
     Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-crash-reporter
     ${webdriver}=    Create WebDriver    Chrome    options=${options}
 
 Open Browser To Home Page
