@@ -1,6 +1,8 @@
 *** Settings ***
-Documentation     Simple example using SeleniumLibrary.
+Documentation     Chrome Browser common resources.
+Library           Collections
 Library           SeleniumLibrary
+Library           libs/ParallelLibrary.py    5
 
 *** Variables ***
 @{ELEMENT_IDS}
@@ -27,10 +29,23 @@ Open Browser To Home Page
     Title Should Be    Ghost Job Buster
     Check Page Elements
 
+Open Browser To Home Page Parallel
+    Go To  ${LOGIN URL}
+    Title Should Be    Ghost Job Buster
+    Check Page Elements In Parallel
+
 Check Page Elements
     FOR    ${id}    IN    @{ELEMENT_IDS}
         Page Should Contain Element    id=${id}
     END
+
+Check Page Elements In Parallel
+    ${args_list}=    Create List
+    FOR    ${id}    IN    @{ELEMENT_IDS}
+        ${args}=    Create List    id=${id}
+        Append To List    ${args_list}    ${args}
+    END
+    Execute In Parallel    Page Should Contain Element    @{args_list}
 
 Valid Home Page User Logged In
     [Arguments]  ${app_title}
