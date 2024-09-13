@@ -8,40 +8,22 @@ Suite Teardown    Close Browser
 Force Tags	  1  1.2  login
 
 *** Variables ***
-${LOGIN URL}      http://localhost:5173/
-${BROWSER}        Chrome
+${LOGIN URL}  http://localhost:5173/
+${BROWSER}    Chrome
+${APP_TITLE}  Ghost Job Buster
 
 *** Test Cases ***
 Valid Login Page
     Open Browser To Home Page
     Login To GJD with username and password
+
+Valid Logout
+    User Logout
+    Valid Home Page User Logged Out  ${APP_TITLE}
  
 *** Keywords ***
 Login To GJD with username and password
     Click Link			   id=loginLink
     Title Should Be    Log in | ${APP_NAME}
     Enter username and password
-    Valid Home Page User Logged In
-
-Enter username and password
-    Input Username  ${USERNAME}
-    Submit Credentials
-    Title Should Be    Enter your password to log in | ${APP_NAME}
-    Input Password  ${PASSWORD}
-    Submit Credentials
-
-Valid Home Page User Logged In
-    Title Should Be    Ghost Job Buster
-    Wait Until Page Contains  Logout
-    Page Should Contain Element    id=logoutLink
-
-Input Username
-    [Arguments]    ${username}
-    Input Text    username    ${username}
-
-Input Password
-    [Arguments]    ${password}
-    Input Text    password    ${password}
-
-Submit Credentials
-    Click Element   //*[contains(text(),'Continue')]
+    Valid Home Page User Logged In  ${APP_TITLE}

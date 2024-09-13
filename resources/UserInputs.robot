@@ -22,3 +22,6 @@ Input Password
 
 Submit Credentials
     Click Element   //*[contains(text(),'Continue')]
+
+User Logout
+    Click Element  id=logoutLink 
