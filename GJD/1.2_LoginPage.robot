@@ -3,14 +3,12 @@ Documentation     Log into GJD using auth0 username and password
 Library           SeleniumLibrary
 Resource          resources/ChromeBrowser.robot
 Resource          resources/UserInputs.robot
+Resource          resources/AppVariables.robot
 Suite Setup       Open Headless Chrome Browser
 Suite Teardown    Close Browser
 Force Tags	  1  1.2  login
 
 *** Variables ***
-${LOGIN URL}  http://localhost:5173/
-${BROWSER}    Chrome
-${APP_TITLE}  Ghost Job Buster
 
 *** Test Cases ***
 Valid Login Page
