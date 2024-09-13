@@ -20,6 +20,7 @@ Open Headless Chrome Browser
     ${options}=    Evaluate    
     ...  sys.modules['selenium.webdriver'].ChromeOptions()
     ...  sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --disable-extensions
     Call Method    ${options}    add_argument    --headless
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
