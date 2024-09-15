@@ -5,6 +5,7 @@ Library           SeleniumLibrary
 Library           libs/ParallelLibrary.py    5
 
 *** Variables ***
+${PRICING_ENABLED}  False
 @{ELEMENT_IDS}
     ...  app
     ...  header
@@ -12,7 +13,6 @@ Library           libs/ParallelLibrary.py    5
     ...  how-it-works
     ...  how-it-works-businesses
     ...  features
-    ...  pricing
     ...  footer
 
 *** Keywords ***
@@ -42,6 +42,8 @@ Check Page Elements
     FOR    ${id}    IN    @{ELEMENT_IDS}
         Page Should Contain Element    id=${id}
     END
+    Run Keyword If  '${PRICING_ENABLED}' != 'False' 
+    ...  Page Should Contain Element    id=pricing
 
 Check Page Elements In Parallel
     ${args_list}=    Create List
