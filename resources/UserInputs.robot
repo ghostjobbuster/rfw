@@ -8,6 +8,8 @@ Library           SeleniumLibrary
 Enter username and password
     Input Username  ${USERNAME}
     Submit Credentials
+    Wait Until Page Contains
+    ...  Enter your password to log in | ${APP_NAME}
     Title Should Be    Enter your password to log in | ${APP_NAME}
     Input Password  ${PASSWORD}
     Submit Credentials

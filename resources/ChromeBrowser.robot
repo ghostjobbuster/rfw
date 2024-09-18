@@ -20,22 +20,27 @@ Open Headless Chrome Browser
     ${options}=    Evaluate    
     ...  sys.modules['selenium.webdriver'].ChromeOptions()
     ...  sys, selenium.webdriver
-    Call Method    ${options}    add_argument    --disable-extensions
-    Call Method    ${options}    add_argument    --headless
-    Call Method    ${options}    add_argument    --disable-gpu
-    Call Method    ${options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --disable-crash-reporter
+    
+    ${options_list}=  Create list
+    ...  --disable-extensions
+    ...  --headless
+    ...  --disable-gpu
+    ...  --disable-dev-shm-usage
+    ...  --no-sandbox
+    ...  --disable-crash-reporter
+    FOR  ${item}  IN  @{options_list}
+      Call Method    ${options}    add_argument  ${item}
+    END
     ${webdriver}=    Create WebDriver    Chrome    options=${options}
 
 Open Browser To Home Page
     Go To  ${LOGIN URL}
-    Title Should Be    Ghost Job Buster
+    Title Should Be    ${APP_TITLE}
     Check Page Elements
 
 Open Browser To Home Page Parallel
     Go To  ${LOGIN URL}
-    Title Should Be    Ghost Job Buster
+    Title Should Be    ${app_title}
     Check Page Elements In Parallel
 
 Check Page Elements
@@ -55,12 +60,16 @@ Check Page Elements In Parallel
 
 Valid Home Page User Logged In
     [Arguments]  ${app_title}
+    Wait Until Page Contains
+    ...  ${app_title}
     Title Should Be    ${app_title}
     Wait Until Page Contains  Logout
     Page Should Contain Element    id=logoutLink
 
 Valid Home Page User Logged Out
     [Arguments]  ${app_title}
+    Wait Until Page Contains
+    ...  ${app_title}
     Title Should Be    ${app_title}
     Wait Until Page Contains  Login
     Page Should Contain Element    id=loginLink

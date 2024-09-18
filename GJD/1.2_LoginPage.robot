@@ -22,6 +22,7 @@ Valid Logout
 *** Keywords ***
 Login To GJD with username and password
     Click Link			   id=loginLink
-    Title Should Be    Log in | ${APP_NAME}
+    Wait Until Page Contains  Log in | ${APP_NAME}
+    Title Should Be           Log in | ${APP_NAME}
     Enter username and password
     Valid Home Page User Logged In  ${APP_TITLE}
